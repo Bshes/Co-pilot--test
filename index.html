@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Futuristic Fitness Coaching</title>
+  <!-- Google Fonts: Orbitron for headlines and Montserrat for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome (Optional) -->
+  <script src="https://kit.fontawesome.com/yourkitcode.js" crossorigin="anonymous"></script>
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    /* ========== BASE STYLES ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0D0D0D;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      color: #32FF7E;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+    
+    nav ul li a {
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    
+    nav ul li a:hover {
+      color: #4361EE;
+    }
+
+    /* Hamburger icon for mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 110;
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #32FF7E;
+      margin: 5px 0;
+      transition: 0.4s;
+    }
+    
+    /* Mobile menu styling */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 70px;
+        right: 50px;
+        width: 200px;
+        border-radius: 5px;
+        padding: 10px 0;
+      }
+      nav ul.active {
+        display: flex;
+        animation: slideDown 0.5s ease-in-out forwards;
+      }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+    
+    /* ========== HERO SECTION ========== */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 120px; /* to account for fixed header */
+      min-height: 90vh;
+      background: linear-gradient(135deg, #3A0CA3, #4361EE);
+      overflow: hidden;
+    }
+    
+    /* Particle canvas overlay placement */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    
+    .hero-content {
+      display: flex;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-text {
+      flex: 1;
+      padding: 20px;
+    }
+    
+    .hero-text h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #32FF7E;
+    }
+    
+    .hero-text p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      color: #eee;
+    }
+    
+    .cta-btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      background: transparent;
+      border: 2px solid #32FF7E;
+      color: #32FF7E;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-btn:hover {
+      transform: scale(1.05);
+      background: #32FF7E;
+      color: #0D0D0D;
+    }
+    
+    .hero-image {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .hero-image img {
+      max-width: 100%;
+      border: 5px solid rgba(50, 255, 126, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 0 20px #32FF7E;
+      animation: float 5s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    /* ========== FEATURES SECTION ========== */
+    .features {
+      padding: 80px 50px;
+      background: #111;
+    }
+    
+    .features h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+      font-family: 'Orbitron', sans-serif;
+      color: #32FF7E;
+    }
+    
+    .feature-cards {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 30px;
+      flex: 1 1 250px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .feature-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #4361EE;
+    }
+    
+    .feature-card i {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: #32FF7E;
+    }
+    
+    .feature-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .feature-card p {
+      font-size: 16px;
+      color: #aaa;
+    }
+    
+    /* ========== TESTIMONIALS SECTION ========== */
+    .testimonials {
+      padding: 80px 50px;
+      background: #0D0D0D;
+    }
+    
+    .testimonials h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+      font-family: 'Orbitron', sans-serif;
+      color: #32FF7E;
+    }
+    
+    .testimonial-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding-bottom: 20px;
+    }
+    
+    .testimonial {
+      flex: 0 0 300px;
+      scroll-snap-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .testimonial.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .testimonial img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #32FF7E;
+      margin-bottom: 10px;
+    }
+    
+    .testimonial p {
+      font-size: 14px;
+      color: #ccc;
+    }
+    
+    /* ========== MAIN CTA SECTION ========== */
+    .main-cta {
+      padding: 80px 50px;
+      background: linear-gradient(135deg, #4361EE, #32FF7E);
+      text-align: center;
+    }
+    
+    .main-cta h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-family: 'Orbitron', sans-serif;
+      color: #0D0D0D;
+    }
+    
+    .main-cta .cta-btn {
+      font-size: 20px;
+      padding: 20px 40px;
+      border-color: #0D0D0D;
+      background: #0D0D0D;
+      color: #32FF7E;
+      box-shadow: 0 0 20px #0D0D0D;
+    }
+    
+    .main-cta .cta-btn:hover {
+      background: transparent;
+      color: #0D0D0D;
+      box-shadow: none;
+    }
+    
+    /* ========== FOOTER ========== */
+    footer {
+      padding: 40px 50px;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    footer .social-icons {
+      margin-bottom: 20px;
+    }
+    
+    footer .social-icons a {
+      margin: 0 10px;
+      font-size: 24px;
+      color: #32FF7E;
+      transition: transform 0.3s ease;
+    }
+    
+    footer .social-icons a:hover {
+      transform: scale(1.2);
+    }
+    
+    footer p {
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== HEADER SECTION ========== -->
+  <header>
+    <div class="logo">FitFuture</div>
+    <!-- Hamburger Icon for Mobile -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#features">Programs</a></li>
+        <li><a href="#testimonials">Success</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <!-- Particle background -->
+    <div id="particles-js"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Unleash Your Ultimate Potential</h1>
+        <p>Join our cutting-edge coaching program and transform your body and mind.</p>
+        <button class="cta-btn">Start Today</button>
+      </div>
+      <div class="hero-image">
+        <img src="https://via.placeholder.com/500x500?text=3D+Athlete+Illustration" alt="Futuristic Athlete" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- ========== FEATURES SECTION ========== -->
+  <section class="features" id="features">
+    <h2>Transform Your Workout Experience</h2>
+    <div class="feature-cards">
+      <div class="feature-card reveal">
+        <i class="fas fa-dumbbell"></i>
+        <h3>Personalized Training</h3>
+        <p>Custom workout routines tailored just for you to achieve peak performance.</p>
+      </div>
+      <div class="feature-card reveal">
+        <i class="fas fa-apple-alt"></i>
+        <h3>Nutrition Plans</h3>
+        <p>Delicious and efficient meal plans that fuel your body for success.</p>
+      </div>
+      <div class="feature-card reveal">
+        <i class="fas fa-video"></i>
+        <h3>Virtual Coaching</h3>
+        <p>Access live coaching sessions and expert guidance from anywhere.</p>
+      </div>
+      <div class="feature-card reveal">
+        <i class="fas fa-chart-line"></i>
+        <h3>Performance Tracking</h3>
+        <p>Monitor your progress with our state-of-the-art digital dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS SECTION ========== -->
+  <section class="testimonials" id="testimonials">
+    <h2>Real Success Stories</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial reveal">
+        <img src="https://via.placeholder.com/80" alt="Client Photo" />
+        <p>"I transformed my life with FitFuture. Best decision ever!"</p>
+      </div>
+      <div class="testimonial reveal">
+        <img src="https://via.placeholder.com/80" alt="Client Photo" />
+        <p>"Amazing coaching – I reached goals I never thought possible."</p>
+      </div>
+      <div class="testimonial reveal">
+        <img src="https://via.placeholder.com/80" alt="Client Photo" />
+        <p>"The virtual sessions are so engaging and innovative!"</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ========== MAIN CTA SECTION ========== -->
+  <section class="main-cta">
+    <h2>Join the Fitness Revolution</h2>
+    <button class="cta-btn">Sign Up Now</button>
+  </section>
+  
+  <!-- ========== FOOTER SECTION ========== -->
+  <footer id="contact">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2023 FitFuture. All rights reserved.</p>
+  </footer>
+  
+  <!-- ========== JAVASCRIPT ENHANCEMENTS ========== -->
+  <script>
+    // Initialize Particles.js in the hero section
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#32FF7E" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#32FF7E",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": { "enable": true, "speed": 4, "direction": "none", "out_mode": "out" }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+        "modes": {
+          "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+          "bubble": { "distance": 400, "size": 8, "duration": 2, "opacity": 0.8 }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Mobile hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav ul li a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        navMenu.classList.remove('active');
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80, // offset for fixed header
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Scroll-reveal animations using IntersectionObserver
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    revealElements.forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
