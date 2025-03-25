@@ -692,7 +692,11 @@
       },
       "interactivity": {
         "detect_on": "canvas",
-        "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+        "events": { 
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" },
+           "resize": true 
+        },
         "modes": {
           "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
           "bubble": { "distance": 400, "size": 8, "duration": 2, "opacity": 0.8 }
@@ -700,14 +704,14 @@
       },
       "retina_detect": true
     });
-
+    
     // Mobile hamburger menu toggle
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     hamburger.addEventListener('click', () => {
       navMenu.classList.toggle('active');
     });
-
+    
     // Smooth scrolling for navigation links
     document.querySelectorAll('nav ul li a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
