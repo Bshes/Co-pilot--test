@@ -81,7 +81,7 @@
       transition: 0.4s;
     }
     
-    /* Mobile menu styling */
+    /* ========== Mobile Menu ========== */
     @media (max-width: 768px) {
       nav ul {
         display: none;
@@ -315,7 +315,7 @@
     .how-it-works {
       padding: 80px 50px;
       background: #151515;
-      /* Debug border to ensure the section is visible. Remove this border after testing */
+      /* Debug border for testing visibility on desktop */
       border: 2px solid red;
     }
     
@@ -724,7 +724,7 @@
       });
     });
     
-    // Scroll-reveal animations using IntersectionObserver
+    // IntersectionObserver for scroll-reveal animations (threshold lowered to 0.1)
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -733,10 +733,13 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1 });
     
-    revealElements.forEach(el => {
-      observer.observe(el);
+    revealElements.forEach(el => observer.observe(el));
+    
+    // Fallback: Ensure all reveal elements are set to visible on window load
+    window.addEventListener('load', () => {
+      revealElements.forEach(el => el.classList.add('visible'));
     });
   </script>
 </body>
