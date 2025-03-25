@@ -113,7 +113,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: 120px; /* to account for fixed header */
+      padding-top: 120px; /* account for fixed header */
       min-height: 90vh;
       background: linear-gradient(135deg, #3A0CA3, #4361EE);
       overflow: hidden;
@@ -191,7 +191,7 @@
       padding: 10px;
     }
     
-    /* Animated runner asset from GIPHY (replace with your custom asset if desired) */
+    /* Animated runner asset from GIPHY */
     .animated-runner img {
       width: 300px;
       height: auto;
@@ -315,6 +315,8 @@
     .how-it-works {
       padding: 80px 50px;
       background: #151515;
+      /* Debug border to ensure the section is visible. Remove this border after testing */
+      border: 2px solid red;
     }
     
     .how-it-works h2 {
@@ -340,9 +342,6 @@
       padding: 30px;
       flex: 1 1 200px;
       text-align: center;
-    }
-    
-    .step-card.reveal {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -502,7 +501,7 @@
         width: 100%;
         padding: 20px 0;
       }
-      /* Scale down the runner image on mobile so it fits better */
+      /* Scale down the runner image on mobile */
       .animated-runner img {
         width: 80%;
         max-width: 300px;
