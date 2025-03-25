@@ -182,17 +182,17 @@
       padding: 20px;
       text-align: center;
       position: relative;
+      /* Ensure its container doesn't crop contents */
+      overflow: visible;
     }
     
     .animated-runner {
       position: relative;
       display: inline-block;
-      /* Uncomment below to see a debugging border */
-      /* border: 1px dashed rgba(255,255,255,0.5); */
       padding: 10px;
     }
     
-    /* Using an animated runner asset from GIPHY */
+    /* Animated runner asset from GIPHY (replace with your custom asset if desired) */
     .animated-runner img {
       width: 300px;
       height: auto;
@@ -226,7 +226,7 @@
       animation: floatStats 5s ease-in-out infinite;
     }
     
-    /* Specific stats positions */
+    /* Positions for desktop */
     .stats-bar.stat-1 {
       top: 10%;
       left: -60px;
@@ -423,6 +423,37 @@
     footer p {
       font-size: 14px;
       color: #aaa;
+    }
+    
+    /* ========== MOBILE ADJUSTMENTS ========== */
+    @media (max-width: 768px) {
+      .hero-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-image {
+        width: 100%;
+        padding: 20px 0;
+      }
+      /* Scale down the runner image on mobile so it fits better */
+      .animated-runner img {
+        width: 80%;
+        max-width: 300px;
+      }
+      /* Adjust floating stats positions for mobile */
+      .stats-bar.stat-1 {
+        top: 5%;
+        left: 5%;
+      }
+      .stats-bar.stat-2 {
+        top: 5%;
+        right: 5%;
+      }
+      .stats-bar.stat-3 {
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   </style>
 </head>
