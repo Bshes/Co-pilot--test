@@ -29,7 +29,7 @@
       text-decoration: none;
       color: inherit;
     }
-
+    
     /* ========== HEADER ========== */
     header {
       position: fixed;
@@ -63,7 +63,7 @@
     nav ul li a:hover {
       color: #4361EE;
     }
-
+    
     /* Hamburger icon for mobile */
     .hamburger {
       display: none;
@@ -176,27 +176,75 @@
       color: #0D0D0D;
     }
     
+    /* ========== ANIMATED RUNNER & FLOATING STATS ========== */
     .hero-image {
       flex: 1;
       padding: 20px;
       text-align: center;
     }
     
-    .hero-image img {
-      max-width: 100%;
-      border: 5px solid rgba(50, 255, 126, 0.7);
-      border-radius: 10px;
-      box-shadow: 0 0 20px #32FF7E;
-      animation: float 5s ease-in-out infinite;
+    .animated-runner {
+      position: relative;
+      display: inline-block;
     }
     
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
+    /* Replace with your animated runner image (SVG, GIF or other) */
+    .animated-runner img {
+      width: 300px;
+      height: auto;
+      animation: runnerBounce 5s ease-in-out infinite;
+    }
+    
+    @keyframes runnerBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    .floating-stats {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    
+    .stats-bar {
+      position: absolute;
+      background-color: rgba(50, 255, 126, 0.8);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-family: 'Montserrat', sans-serif;
+      color: #0D0D0D;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: floatStats 5s ease-in-out infinite;
+    }
+    
+    /* Specific stats positions */
+    .stats-bar.stat-1 {
+      top: 10%;
+      left: -60px;
+      animation-delay: 0s;
+    }
+    
+    .stats-bar.stat-2 {
+      top: 10%;
+      right: -60px;
+      animation-delay: 1s;
+    }
+    
+    .stats-bar.stat-3 {
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 2s;
+    }
+    
+    @keyframes floatStats {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
     
     /* ========== FEATURES SECTION ========== */
@@ -405,7 +453,25 @@
         <button class="cta-btn">Start Today</button>
       </div>
       <div class="hero-image">
-        <img src="https://via.placeholder.com/500x500?text=3D+Athlete+Illustration" alt="Futuristic Athlete" />
+        <!-- Animated Runner with Floating Stats -->
+        <div class="animated-runner">
+          <!-- Replace this image URL with your animated runner asset -->
+          <img src="https://via.placeholder.com/300x300?text=Runner" alt="Animated Runner" />
+          <div class="floating-stats">
+            <div class="stats-bar stat-1">
+              <div class="value">5000</div>
+              <div class="label">Steps</div>
+            </div>
+            <div class="stats-bar stat-2">
+              <div class="value">350</div>
+              <div class="label">Calories</div>
+            </div>
+            <div class="stats-bar stat-3">
+              <div class="value">7.8</div>
+              <div class="label">Miles</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -436,7 +502,7 @@
       </div>
     </div>
   </section>
-
+  
   <!-- ========== TESTIMONIALS SECTION ========== -->
   <section class="testimonials" id="testimonials">
     <h2>Real Success Stories</h2>
